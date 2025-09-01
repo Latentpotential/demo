@@ -92,7 +92,7 @@ const MainCard2 = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-300 border-t border-b border-gray-200">
                   {leadsData[activeTab].map((lead, index) => (
-                    <tr key={index} classname="hover:bg-gray-50">
+                    <tr key={index} className="hover:bg-gray-50 bg-white text-gray-600">
                       <td className="px-12 py-5">{lead.id}</td>
                       <td className="pl-8 py-5">{lead.date}</td>
                       <td className="pl-12 py-5">{lead.createdBy}</td>
@@ -101,7 +101,7 @@ const MainCard2 = () => {
                       <td className="px-12 py-5">{lead.district}</td>
                       <td className="pl-12 py-5">{lead.mobile}</td>
                       <td className="pl-36 pr-36 py-5">{lead.currentBal}</td>
-                      <td className="pl-8 py-5"><div className="bg-gray-200 mr-10 ml-24 p-1 rounded-full"><EllipsisVertical size={30} /></div></td>
+                      <td className="pl-8 py-5"><div className="bg-gray-200 mr-16 ml-24 p-1 items-center flex justify-center rounded-full"><EllipsisVertical size={30} /></div></td>
                     </tr>
                   ))}
                 </tbody>
