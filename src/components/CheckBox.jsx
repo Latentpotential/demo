@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function CheckBox({ checked, onToggle }) {
 
+  const navigate = useNavigate();
 
+  if(!checked) {
+    navigate("/select");
+  }
   return (
     <div
       onClick={onToggle}
