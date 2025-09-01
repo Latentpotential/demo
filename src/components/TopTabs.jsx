@@ -60,7 +60,7 @@ export default function InlineTabs() {
                 color: isActive ? "#FFFFFF" : "#A5AEBC",
               }}
               transition={{ duration: 0.3 }}
-              className="flex items-center justify-between text-xs  gap-2 border border-gray-200 px-4 py-2 rounded-lg font-semibold"
+              className="flex items-center justify-between text-md  gap-2 border border-gray-200 px-4 py-2 rounded-lg font-semibold"
             >
               <span className="whitespace-nowrap">{tab.title}</span>
               <motion.span key={index}
