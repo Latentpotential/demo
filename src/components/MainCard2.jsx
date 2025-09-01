@@ -72,7 +72,7 @@ const MainCard2 = () => {
           <div className="w-full pt-3">
             <InlineTabs />
           </div>
-          <div classname="w-full mx-auto mt-10">
+          <div className="w-full mx-auto mt-10">
 
             {/* Tab Content */}
             <div className="overflow-x-hidden border border-gray-200 rounded-lg">
