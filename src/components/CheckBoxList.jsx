@@ -17,7 +17,7 @@ export default function CheckBoxList() {
 
   const STORAGE_KEY = "checkboxSelections:v1";
 
-  // ✅ Load initial state from localStorage
+
   const [checkedItems, setCheckedItems] = useState(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -29,7 +29,6 @@ export default function CheckBoxList() {
     }
   });
 
-  // ✅ Persist whenever state changes
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedItems));
   }, [checkedItems]);
@@ -38,7 +37,6 @@ export default function CheckBoxList() {
     setCheckedItems((prev) => {
       const updated = prev.map((v, i) => (i === index ? !v : v));
 
-      // ✅ Navigate only when user checks (not unchecks)
       if (!prev[index]) {
         navigate("/select");
       }
