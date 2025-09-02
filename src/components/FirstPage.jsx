@@ -5,9 +5,9 @@ import MainCard from './MainCard'
 
 const FirstPage = () => {
   return (
-    <div className="overflow-hidden h-screen max-w-screen">
-      <NavBar />
-      <div className="left-10 absolute flex mr-10 gap-4">
+    <div className="overflow-x-hidden h-full max-w-screen dark:bg-blue-950/40">
+      <NavBar showSearch={true} />
+      <div className="overflow-x-hidden pl-9 absolute w-full dark:bg-blue-950/40 flex pr-6 gap-4">
         <SideBar />
         <MainCard />
       </div>

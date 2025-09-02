@@ -40,8 +40,8 @@ const MainCard2 = ({ tabs, data }) => {
               onClick={() => setActiveTab(tab)}
               className={`text-xl font-semibold transition-colors p-5 ${
                 activeTab === tab
-                  ? "border-b-4 border-primary text-primary"
-                  : "text-gray-600"
+                  ? "border-b-4 border-primary text-primary dark:bg-blue-950/90 dark:text-white"
+                  : "text-gray-600 dark:text-white"
               }`}
             >
               {tab}
@@ -58,7 +58,7 @@ const MainCard2 = ({ tabs, data }) => {
       </div>
 
       <div className="mt-8">
-        <div className="w-[1640px] bg-white rounded-lg ml-4 p-4 border border-gray-200">
+        <div className="w-[1640px] bg-white dark:bg-blue-950/90 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
           <div className="overflow-x-auto border border-gray-200 rounded-lg">
             <table className="w-full">
               <thead className="bg-secondary">
@@ -89,7 +89,7 @@ const MainCard2 = ({ tabs, data }) => {
                       <td className="px-6 py-4">
                         <button
                           onClick={() => handleDelete(idx)}
-                          className="bg-red-500/30 text-red-500 font-semibold px-3 py-1 rounded hover:bg-red-600"
+                          className="bg-red-500/30 text-red-500 font-semibold px-3 py-1 rounded hover:bg-red-500 hover:text-white"
                         >
                           Delete
                         </button>

@@ -3,13 +3,13 @@ import { ArrowUpRight, CalendarClock, MapPinned } from 'lucide-react'
 
 const MiniCard4Comp = ({imag, num, quotation}) => {
   return (
-    <div className='bg-white h-[277px] w-[494px] flex justify-between items-center border border-gray-200 mt-4 ml-4 p-4 rounded-lg'>
-      <div className='bg-secondary text-primary w-[150px] h-[190px] flex justify-center items-center rounded-lg  p-4 '>
+    <div className='bg-white h-[277px] w-[494px] flex justify-between dark:bg-blue-950/70 dark:text-white dark:border-white items-center border border-gray-200 mt-4 ml-4 p-4 rounded-lg'>
+      <div className='bg-secondary dark:bg-blue-950/70 dark:text-white dark:border-white text-primary w-[150px] h-[190px] flex justify-center items-center rounded-lg  p-4 '>
         {imag}
       </div>
 
       <div className='ml-4'>
-        <p className='text-primary text-6xl font-bold'>{num}</p>
+        <p className='text-primary text-6xl dark:text-white font-bold'>{num}</p>
         <p className='text-md text-gray-200'>{quotation}</p>
       </div>
 

@@ -2,12 +2,12 @@ import { Search } from "lucide-react"
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center w-[530px] h-[55px] bg-white border border-r-0 rounded-lg mt-10 mr-[660px]">
+    <div className="flex items-center w-[530px] h-[55px] bg-white  border border-r-0 rounded-lg mt-10 mr-[580px]">
       <div className="w-[55px] h-[55px] rounded-lg flex justify-center items-center px-4">
-        <Search size={20} className="text-gray-600"/>
+        <Search size={20} className="text-gray-400"/>
       </div>
 
-      <div className="h-[36px] w-[5px] bg-gray-200"></div>
+      <div className="h-[36px] w-[5px] dark:bg-blue-950/70 dark:text-white dark:border-white bg-gray-200"></div>
 
       <div>
       

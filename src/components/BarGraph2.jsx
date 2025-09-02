@@ -9,11 +9,11 @@ import {
   CartesianGrid,
 } from "recharts";
 import { DateRange } from "react-date-range";
+import { format, isWithinInterval, parseISO } from "date-fns";
 import * as XLSX from "xlsx";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-// 🔹 Sample data with dates
 const initialData = [
   { name: "Lead Bank", value: 60, date: "2025-08-25" },
   { name: "Validate", value: 480, date: "2025-08-26" },
@@ -26,9 +26,8 @@ const initialData = [
 ];
 
 const BarGraph2 = () => {
-  const [data, setData] = useState(initialData);
-  const [filteredData, setFilteredData] = useState(initialData);
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [allData, setAllData] = useState(initialData);
+  const [chartData, setChartData] = useState(initialData);
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date("2025-08-25"),
@@ -36,16 +35,25 @@ const BarGraph2 = () => {
       key: "selection",
     },
   ]);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   const popoverRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const formattedStart = dateRange[0].startDate.toLocaleDateString();
-  const formattedEnd = dateRange[0].endDate.toLocaleDateString();
-
-  // 🔹 Close calendar if clicked outside
+  // Detect dark mode dynamically
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const root = document.documentElement;
+    const updateTheme = () => setIsDark(root.classList.contains("dark"));
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  // Close calendar when clicking outside
+  useEffect(() => {
+    const onDocClick = (e) => {
       if (
         popoverRef.current &&
         !popoverRef.current.contains(e.target) &&
@@ -55,75 +63,91 @@ const BarGraph2 = () => {
         setShowCalendar(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // 🔹 Filter data when date range changes
+  // Filter data by date range
   useEffect(() => {
-    const start = dateRange[0].startDate;
-    const end = dateRange[0].endDate;
-    const filtered = data.filter((item) => {
-      const itemDate = new Date(item.date);
-      return itemDate >= start && itemDate <= end;
-    });
-    setFilteredData(filtered);
-  }, [dateRange, data]);
+    const filtered = allData.filter((item) =>
+      isWithinInterval(parseISO(item.date), {
+        start: dateRange[0].startDate,
+        end: dateRange[0].endDate,
+      })
+    );
+    setChartData(filtered);
+  }, [dateRange, allData]);
 
-  // 📥 Handle Excel Upload
+  const formattedStart = format(dateRange[0].startDate, "dd/MM/yyyy");
+  const formattedEnd = format(dateRange[0].endDate, "dd/MM/yyyy");
+
+  // Handle Excel Upload
   const handleExcelUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      const binaryStr = event.target.result;
-      const workbook = XLSX.read(binaryStr, { type: "binary" });
+      const data = new Uint8Array(event.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
       const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const parsedData = XLSX.utils.sheet_to_json(sheet);
-      setData(parsedData);
+      const ws = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json(ws);
+
+      const mapped = rows
+        .map((r) => ({
+          name: r.name ?? r.Name ?? "Unknown",
+          value: Number(r.value ?? r.Value ?? 0),
+          date: (r.date ?? r.Date ?? "").toString().slice(0, 10),
+        }))
+        .filter((r) => r.date);
+
+      setAllData(mapped.length ? mapped : initialData);
     };
-    reader.readAsBinaryString(file);
+    reader.readAsArrayBuffer(file);
   };
 
-  // 📤 Download Excel
-  const handleDownloadExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(filteredData);
+  // Handle Excel Download
+  const handleExcelDownload = () => {
+    const worksheet = XLSX.utils.json_to_sheet(chartData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "BarGraphData");
     XLSX.writeFile(workbook, "BarGraphData.xlsx");
   };
 
   return (
-    <div className="w-[1635px] h-[570px] bg-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200">
+    <div className="w-[1635px] h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white">
+      {/* Header */}
       <div className="flex justify-between w-full">
         <div className="mt-2">
-          <p className="text-xl">Product Category Distribution</p>
+          <p className="text-xl font-semibold">Product Category Distribution</p>
         </div>
 
-        <div className="flex justify-center gap-2">
-          <div className="bg-black w-[120px] h-[40px] rounded-lg flex justify-center space-x-1 items-center text-white text-md">
+        {/* Controls */}
+        <div className="flex justify-center gap-2 relative">
+          {/* Total */}
+          <div className="bg-black w-[120px] h-[40px] rounded-lg dark:bg-white dark:text-black flex justify-center space-x-1 items-center text-white text-md">
             <p>Total:</p>
             <p className="font-bold">
-              {filteredData.reduce((sum, item) => sum + item.value, 0)}
+              {chartData.reduce((sum, item) => sum + (Number(item.value) || 0), 0)}
             </p>
           </div>
 
+          {/* Date Range Picker */}
           <div className="relative">
             <button
               ref={buttonRef}
               type="button"
-              className="bg-primary w-[320px] h-[40px] flex justify-center items-center gap-3 px-3 rounded-lg cursor-pointer"
+              className="bg-primary w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white flex justify-center items-center gap-3 px-3 rounded-lg"
               onClick={() => setShowCalendar((s) => !s)}
             >
               <div className="flex items-center gap-2">
                 <span className="text-white text-sm">From</span>
-                <span className="bg-secondary w-[100px] text-sm text-primary h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-secondary w-[100px] dark:bg-blue-950/70 text-sm h-[26px] rounded-lg flex items-center justify-center">
                   {formattedStart}
                 </span>
                 <span className="text-white">To</span>
-                <span className="bg-secondary w-[100px] text-sm text-primary h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-secondary w-[100px] text-sm dark:bg-blue-950/70 h-[26px] rounded-lg flex items-center justify-center">
                   {formattedEnd}
                 </span>
                 <CalendarIcon size={18} className="text-white" />
@@ -133,7 +157,7 @@ const BarGraph2 = () => {
             {showCalendar && (
               <div
                 ref={popoverRef}
-                className="absolute top-12 left-0 z-50 shadow-lg rounded-xl overflow-hidden bg-white"
+                className="absolute top-12 left-0 z-50 shadow-lg rounded-xl overflow-hidden bg-white dark:bg-gray-800"
               >
                 <DateRange
                   ranges={dateRange}
@@ -148,7 +172,8 @@ const BarGraph2 = () => {
             )}
           </div>
 
-          <label className="bg-primary w-[120px] h-[40px] rounded-lg text-white flex justify-center items-center text-md cursor-pointer">
+          {/* Upload */}
+          <label className="bg-primary w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -158,9 +183,10 @@ const BarGraph2 = () => {
             />
           </label>
 
+          {/* Export */}
           <button
-            onClick={handleDownloadExcel}
-            className="bg-white w-[150px] h-[40px] rounded-lg border border-gray-200 flex justify-center space-x-2 items-center text-md"
+            onClick={handleExcelDownload}
+            className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-none flex justify-center space-x-1 items-center text-md"
           >
             <p>Export Report</p>
             <Download size={18} />
@@ -168,43 +194,34 @@ const BarGraph2 = () => {
         </div>
       </div>
 
-      <div className="w-full bg-white rounded-2xl p-4">
-        <BarChart
-          className="mt-10 ml-5"
-          width={1500}
-          height={400}
-          data={filteredData}
-        >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" />
+      {/* Chart */}
+      <div className="w-full bg-white dark:bg-blue-950/60 rounded-2xl pl-4 pr-4 pb-4 pt-16">
+        <BarChart width={1500} height={400} data={chartData}>
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+            stroke={isDark ? "#4B5563" : "#E5E7EB"}
+          />
+          <XAxis
+            dataKey="name"
+            stroke={isDark ? "#D1D5DB" : "#374151"}
+            tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+          />
           <YAxis
-            label={{
-              value: "Total Product Category Count",
-              angle: -90,
-              position: "insideLeft",
-              offset: -10,
-              style: { textAnchor: "middle", fill: "#374151", fontSize: 14 },
+            stroke={isDark ? "#D1D5DB" : "#374151"}
+            tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: isDark ? "#1F2937" : "#FFFFFF",
+              color: isDark ? "#F9FAFB" : "#111827",
+              border: "none",
             }}
           />
-          <Tooltip />
           <Bar
             dataKey="value"
-            barSize={60}
-            shape={(props) => {
-              const { x, y, width, height, value } = props;
-              const fillColor =
-                value < 1000 ? "rgba(126, 222, 166, 1)" : "#14A751";
-              return (
-                <rect
-                  x={x}
-                  y={y}
-                  width={width}
-                  height={height}
-                  fill={fillColor}
-                  rx={6}
-                />
-              );
-            }}
+            fill={isDark ? "#3B82F6" : "#14A751"}
+            radius={[6, 6, 0, 0]}
           />
         </BarChart>
       </div>

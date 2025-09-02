@@ -1,9 +1,5 @@
-
-
-
 export default function DataTable() {
-
-  const rupee = '₹';
+  const rupee = "₹";
 
   const orders = [
     { id: 1, source: "Cold Call", received: "7924", leadbank: "63", validate: "451", qualified: "1177", disqualified: "5721", win: "814", conversion: "60%", orderqty: "40", revenue: `${rupee}40,00,000` },
@@ -17,43 +13,45 @@ export default function DataTable() {
   ];
 
   return (
-    <div className='w-[1125px] h-[550px] bg-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200'>
-      <h2 className="text-xl font-semibold mb-4 mt-4">Lead Conversion - Source Wise</h2>
+    <div className="w-[1125px] h-[550px] bg-white dark:bg-blue-950/90 dark:border-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200  transition-colors">
+      <h2 className="text-xl font-semibold mb-4 mt-4 text-gray-900 dark:text-white">
+        Lead Conversion - Source Wise
+      </h2>
 
-      <div className="overflow-x-hidden ">
-        <table className="min-w-full border border-gray-200 rounded-lg">
+      <div className="overflow-x-hidden">
+        <table className="min-w-full border border-gray-200 dark:border-white rounded-lg">
           {/* Table Head */}
-          <thead>
+          <thead className="bg-gray-100 dark:bg-blue-950/60">
             <tr>
-              <th className="px-3 py-3 text-left text-sm font-medium">Sr. No</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Source</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Received</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Lead Bank</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Validate</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Qualified</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Disqualified</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Win</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Conversion</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Order Qty</th>
-              <th className="px-3 py-3 text-left text-sm font-medium">Revenue</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Sr. No</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Source</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Received</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Lead Bank</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Validate</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Qualified</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Disqualified</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Win</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Conversion</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Order Qty</th>
+              <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Revenue</th>
             </tr>
           </thead>
 
           {/* Table Body */}
-          <tbody className="divide-y divide-gray-300 border-t border-gray-200">
+          <tbody className="divide-y divide-gray-300 dark:divide-white border-t border-gray-200 dark:border-white">
             {orders.map((order) => (
-              <tr key={order.id} className="hover:bg-gray-100">
-                <td className="px-3 py-3">{order.id}</td>
-                <td className="px-3 py-3">{order.source}</td>
-                <td className="px-3 py-3">{order.received}</td>
-                <td className="px-3 py-3">{order.leadbank}</td>
-                <td className="px-3 py-3">{order.validate}</td>
-                <td className="px-3 py-3">{order.qualified}</td>
-                <td className="px-3 py-3">{order.disqualified}</td>
-                <td className="px-3 py-3">{order.win}</td>
-                <td className="px-3 py-3">{order.conversion}</td>
-                <td className="px-3 py-3">{order.orderqty}</td>
-                <td className="px-3 py-3">{order.revenue}</td>
+              <tr key={order.id} className="hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.id}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.source}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.received}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.leadbank}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.validate}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.qualified}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.disqualified}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.win}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.conversion}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.orderqty}</td>
+                <td className="px-3 py-3 text-gray-900 dark:text-white">{order.revenue}</td>
               </tr>
             ))}
           </tbody>
@@ -62,4 +60,3 @@ export default function DataTable() {
     </div>
   );
 }
-

@@ -24,17 +24,17 @@ const dataitema = [
 
 const MiniCard3Comp = ({title, num, quotation, imag}) => {
   return (
-    <div className="w-[240px] h-[220px] bg-white rounded-lg mt-4 ml-4 p-4  border border-gray-200">
+    <div className="w-[240px] h-[220px] bg-white rounded-lg mt-4 ml-4 p-4 dark:bg-blue-950/70 dark:text-white dark:border-white border border-gray-200">
       <div className='space-y-3'>
         <div>
           <p className="text-md">{title}</p>
         </div>
         <div className="space-y-1 ">
           <p className="text-4xl font-bold">{num}</p>
-          <p className="text-gray-400">{quotation}</p>
+          <p className="text-gray-400 dark:text-white">{quotation}</p>
         </div>
       </div>
-      <div className='text-primary flex justify-end items-end mt-5'>
+      <div className='text-primary dark:text-white flex justify-end items-end mt-5'>
         {imag}
       </div>
     </div>
