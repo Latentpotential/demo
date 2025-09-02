@@ -79,7 +79,7 @@ const MainCard2 = ({ tabs, data }) => {
                   filteredData.map((row, idx) => (
                     <tr
                       key={idx}
-                      className="hover:bg-gray-50 bg-white text-gray-600"
+                      className="odd:bg-gray-50 even:bg-secondary hover:bg-gray-100 text-gray-600"
                     >
                       {tableHeaders.map((header) => (
                         <td key={header} className="px-6 py-4">
@@ -89,7 +89,7 @@ const MainCard2 = ({ tabs, data }) => {
                       <td className="px-6 py-4">
                         <button
                           onClick={() => handleDelete(idx)}
-                          className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                          className="bg-red-500/30 text-red-500 font-semibold px-3 py-1 rounded hover:bg-red-600"
                         >
                           Delete
                         </button>
