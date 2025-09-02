@@ -14,7 +14,6 @@ import * as XLSX from "xlsx";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-// Sample data with dates
 const initialData = [
   { name: "Inverter Battery", value: 140, date: "2025-08-28" },
   { name: "E-Scooter", value: 7624, date: "2025-08-29" },

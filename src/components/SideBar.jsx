@@ -73,7 +73,7 @@ const SidebarItems = [
     icon: <Grid2X2 size={30} />,
     nature: "secondary",
     collapsible: false,
-    path: "/",
+    path: "/", // Add navigation path
   },
   {
     title: "Lead",
