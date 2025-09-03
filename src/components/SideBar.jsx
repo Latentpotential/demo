@@ -45,7 +45,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
         onClick={handleClick}
         className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left ${
           nature === "secondary" ? "bg-black text-white" : "bg-white text-black"
-        } rounded-lg`}
+        } rounded-lg dark:bg-blue-950/90 dark:text-white`}
       >
         <div className="flex items-center w-full">
           <div className="mr-6">{icon}</div>
@@ -55,7 +55,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
       </button>
 
       {collapsible && open && (
-        <div className="pt-4 pb-4 pr-4 rounded-lg w-[270px] text-white bg-gray-500">
+        <div className="pt-4 pb-4 pr-4 rounded-lg w-[270px] text-white bg-gray-500 dark:bg-white dark:text-black">
           <div className="flex ml-5 items-center w-full text-xl">
             <div className="mr-6">{icon}</div>
             <div>{title}</div>

@@ -49,7 +49,7 @@ export default function CheckBoxList() {
       {items.map((item, index) => (
         <div
           key={index}
-          className="flex w-full items-center border-t border-gray-100 gap-3 p-2"
+          className="flex w-full items-center border-t border-gray-100 dark:border-black gap-3 p-2"
         >
           <CheckBox
             checked={checkedItems[index]}

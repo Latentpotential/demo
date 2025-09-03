@@ -34,7 +34,7 @@ const MiniCard3Comp = ({title, num, quotation, imag}) => {
           <p className="text-gray-400 dark:text-white">{quotation}</p>
         </div>
       </div>
-      <div className='text-primary dark:text-white flex justify-end items-end mt-5'>
+      <div className='text-green-200 dark:text-white flex justify-end items-end mt-5'>
         {imag}
       </div>
     </div>

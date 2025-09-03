@@ -4,8 +4,8 @@ import Pow from '../assets/power.png';
 const Avatar = () => {
   return (
     <div className='flex items-center gap-4 mr-10 ml-8 mt-8'>
-      <div className='w-10 h-10 rounded-full bg-secondary dark:bg-blue-950/60 flex justify-center items-center'>
-        <UserRound size={25} className='text-primary dark:text-white'/>
+      <div className='w-10 h-10 rounded-full bg-green-100 dark:bg-blue-950/60 flex justify-center items-center'>
+        <UserRound size={25} className='text-green-200 dark:text-white'/>
       </div>
       
       <div className='dark:text-white'>

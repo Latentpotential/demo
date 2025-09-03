@@ -38,9 +38,9 @@ const MainCard2 = ({ tabs, data }) => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`text-xl font-semibold transition-colors p-5 ${
+              className={`text-xl font-semibold transition-colors p-5 rounded-lg ${
                 activeTab === tab
-                  ? "border-b-4 border-primary text-primary dark:bg-blue-950/90 dark:text-white"
+                  ? "border-b-4 border-primary dark:border-blue-950/90 text-primary dark:bg-blue-950/60 dark:text-white"
                   : "text-gray-600 dark:text-white"
               }`}
             >
@@ -58,10 +58,10 @@ const MainCard2 = ({ tabs, data }) => {
       </div>
 
       <div className="mt-8">
-        <div className="w-[1640px] bg-white dark:bg-blue-950/90 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
-          <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <div className="w-[1640px] bg-white dark:bg-blue-950/40 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
+          <div className="overflow-x-auto border border-gray-200 dark:border-white rounded-lg">
             <table className="w-full">
-              <thead className="bg-secondary">
+              <thead className="bg-secondary dark:bg-blue-950/40 dark:text-white">
                 <tr>
                   {tableHeaders.map((header) => (
                     <th
@@ -74,12 +74,12 @@ const MainCard2 = ({ tabs, data }) => {
                   <th className="px-6 py-4 text-left text-md font-medium">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-300 border-t border-b border-gray-200">
+              <tbody className="divide-y divide-gray-300 border-t border-b dark:border-white border-gray-200">
                 {filteredData.length > 0 ? (
                   filteredData.map((row, idx) => (
                     <tr
                       key={idx}
-                      className="odd:bg-gray-50 even:bg-secondary hover:bg-gray-100 text-gray-600"
+                      className="odd:bg-gray-50 even:bg-secondary dark:odd:bg-blue-950/10 dark:even:bg-blue-950/40 hover:bg-gray-100 text-gray-600 dark:text-white"
                     >
                       {tableHeaders.map((header) => (
                         <td key={header} className="px-6 py-4">
@@ -89,7 +89,7 @@ const MainCard2 = ({ tabs, data }) => {
                       <td className="px-6 py-4">
                         <button
                           onClick={() => handleDelete(idx)}
-                          className="bg-red-500/30 text-red-500 font-semibold px-3 py-1 rounded hover:bg-red-500 hover:text-white"
+                          className="bg-red-500/30 text-red-500 dark:bg-red-500 dark:text-white font-semibold px-3 py-1 rounded hover:bg-red-500 hover:text-white"
                         >
                           Delete
                         </button>

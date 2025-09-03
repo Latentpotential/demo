@@ -6,9 +6,11 @@ import DataRender from './DataRender'
 
 const SecondPage = () => {
   return (
-    <div className="overflow-x-hidden h-screen">
-      <NavBar showSeach={false} />
-      <div className="left-10 absolute flex mr-10 overflow-x-hidden max-w-screen gap-4">
+    <div className="overflow-x-hidden h-[100%] dark:bg-blue-950/40">
+      <div>
+        <NavBar showSeach={false} />
+      </div>
+      <div className=" pl-9 flex w-full overflow-x-hidden gap-4">
         <div className='mt-8'>
           <SideBar />
         </div>

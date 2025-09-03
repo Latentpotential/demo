@@ -9,7 +9,7 @@ const DarkModeToggler = () => {
   return (
     <button 
       onClick={() => setDarkMode(!darkMode)}
-      className=' bg-blue-950/90 dark:bg-yellow-500 text-white dark:text-gray:200 px-4 py-4 rounded-lg'>
+      className=' bg-yellow-500 dark:bg-blue-950/80  dark:text-white px-4 py-4 rounded-lg'>
       {darkMode ? <div><Moon size={25} /></div> : <div><Sun size={25} /></div>}
     </button>
   )

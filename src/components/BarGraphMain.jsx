@@ -14,33 +14,23 @@ import * as XLSX from "xlsx";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-const initialData = [
-  { name: "Inverter Battery", value: 140, date: "2025-08-28" },
-  { name: "E-Scooter", value: 7624, date: "2025-08-29" },
-  { name: "EV Charger", value: 220, date: "2025-08-30" },
-  { name: "Okaya Lithium", value: 127, date: "2025-08-31" },
-  { name: "Inverter Battery", value: 2231, date: "2025-09-01" },
-  { name: "Lithium Battery", value: 0, date: "2025-09-02" },
-  { name: "FERRATO", value: 0, date: "2025-09-03" },
-];
 
-const BarGraph = () => {
+const BarGraphAll = ({initialData, width, widthGraph, title}) => {
+  const [allData, setAllData] = useState(initialData);
+  const [chartData, setChartData] = useState(initialData);
   const [dateRange, setDateRange] = useState([
     {
-      startDate: new Date("2025-08-28"),
-      endDate: new Date("2025-09-03"),
+      startDate: new Date("2025-08-25"),
+      endDate: new Date("2025-09-01"),
       key: "selection",
     },
   ]);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [allData, setAllData] = useState(initialData);
-  const [chartData, setChartData] = useState(initialData);
   const [isDark, setIsDark] = useState(false);
 
-  const buttonRef = useRef(null);
   const popoverRef = useRef(null);
+  const buttonRef = useRef(null);
 
-  // Detect dark mode
   useEffect(() => {
     const root = document.documentElement;
     const updateTheme = () => setIsDark(root.classList.contains("dark"));
@@ -50,9 +40,8 @@ const BarGraph = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Click outside calendar
   useEffect(() => {
-    const onDocMouseDown = (e) => {
+    const onDocClick = (e) => {
       if (
         popoverRef.current &&
         !popoverRef.current.contains(e.target) &&
@@ -62,11 +51,10 @@ const BarGraph = () => {
         setShowCalendar(false);
       }
     };
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // Filter chart data by date range
   useEffect(() => {
     const filtered = allData.filter((item) =>
       isWithinInterval(parseISO(item.date), {
@@ -108,45 +96,44 @@ const BarGraph = () => {
   const handleExcelDownload = () => {
     const worksheet = XLSX.utils.json_to_sheet(chartData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ChartData");
-    XLSX.writeFile(workbook, "chart_data.xlsx");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "BarGraphData");
+    XLSX.writeFile(workbook, "BarGraphData.xlsx");
   };
 
   return (
-    <div className="w-[1125px] h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white">
-      {/* Header */}
+    <div
+      style={{ width: width }}
+      className="h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white"
+    >
       <div className="flex justify-between w-full">
         <div className="mt-2">
-          <p className="text-xl font-semibold">Product Category Distribution</p>
+          <p className="text-xl font-semibold">{title}</p>
         </div>
 
         <div className="flex justify-center gap-2 relative">
-          {/* Total */}
+
           <div className="bg-black w-[120px] h-[40px] rounded-lg dark:bg-white dark:text-black flex justify-center space-x-1 items-center text-white text-md">
             <p>Total:</p>
             <p className="font-bold">
-              {chartData.reduce(
-                (sum, item) => sum + (Number(item.value) || 0),
-                0
-              )}
+              {chartData.reduce((sum, item) => sum + (Number(item.value) || 0), 0)}
             </p>
           </div>
 
-          {/* Date Range */}
+
           <div className="relative">
             <button
               ref={buttonRef}
               type="button"
-              className="bg-primary w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white flex justify-center items-center gap-3 px-3 rounded-lg"
+              className="bg-green-200 w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white flex justify-center items-center gap-3 px-3 rounded-lg"
               onClick={() => setShowCalendar((s) => !s)}
             >
               <div className="flex items-center gap-2">
                 <span className="text-white text-sm">From</span>
-                <span className="bg-secondary w-[100px] dark:bg-blue-950/70 text-sm h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] dark:bg-blue-950/70 text-sm h-[26px] rounded-lg flex items-center justify-center">
                   {formattedStart}
                 </span>
                 <span className="text-white">To</span>
-                <span className="bg-secondary w-[100px] text-sm dark:bg-blue-950/70 h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] text-sm dark:bg-blue-950/70 h-[26px] rounded-lg flex items-center justify-center">
                   {formattedEnd}
                 </span>
                 <CalendarIcon size={18} className="text-white" />
@@ -171,8 +158,7 @@ const BarGraph = () => {
             )}
           </div>
 
-          {/* Upload */}
-          <label className="bg-primary w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -182,7 +168,6 @@ const BarGraph = () => {
             />
           </label>
 
-          {/* Download */}
           <button
             onClick={handleExcelDownload}
             className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-none flex justify-center space-x-1 items-center text-md"
@@ -193,13 +178,12 @@ const BarGraph = () => {
         </div>
       </div>
 
-      {/* Chart */}
       <div className="w-full bg-white dark:bg-blue-950/60 rounded-2xl pl-4 pr-4 pb-4 pt-16">
-        <BarChart width={1000} height={400} data={chartData}>
+        <BarChart width={widthGraph} height={400} data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
-            stroke={isDark ? "#4B5563" : "#E5E7EB"}
+            stroke={isDark ? "#4B5563" : "#DFE5F1"}
           />
           <XAxis
             dataKey="name"
@@ -228,4 +212,4 @@ const BarGraph = () => {
   );
 };
 
-export default BarGraph;
+export default BarGraphAll;

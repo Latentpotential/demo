@@ -1,24 +1,81 @@
-import BarGraph from "./BarGraph"
-import BarGraph2 from "./BarGraph2"
+
+import BarGraphAll from "./BarGraphMain"
 import MyLineChart from "./LineChart"
 import DataTable from "./List"
-import MiniCard1 from "./MiniCard1"
-import MiniCard2 from "./MiniCard2"
 import MiniCard3 from "./MiniCard3"
 import MiniCard4 from "./MiniCard4"
+import MiniCardOp from "./MiniCardOp"
 
 
 const MainCard = () => {
+
+  const initialData1 = [
+    { name: "Inverter Battery", value: 140, date: "2025-08-28" },
+    { name: "E-Scooter", value: 7624, date: "2025-08-29" },
+    { name: "EV Charger", value: 220, date: "2025-08-30" },
+    { name: "Okaya Lithium", value: 127, date: "2025-08-31" },
+    { name: "Inverter Battery", value: 2231, date: "2025-09-01" },
+    { name: "Lithium Battery", value: 0, date: "2025-09-02" },
+    { name: "FERRATO", value: 0, date: "2025-09-03" },
+  ];
+
+  const initialData2 = [
+    { name: "Lead Bank", value: 60, date: "2025-08-25" },
+    { name: "Validate", value: 480, date: "2025-08-26" },
+    { name: "No Response", value: 120, date: "2025-08-28" },
+    { name: "Close", value: 1270, date: "2025-08-29" },
+    { name: "Lost", value: 0, date: "2025-08-30" },
+    { name: "Disqualified", value: 2423, date: "2025-08-31" },
+    { name: "Qualified", value: 400, date: "2025-09-01" },
+    { name: "Win", value: 480, date: "2025-09-01" },
+  ];
+
+  const FirstCardData = [
+    {
+      val : '50,000',
+      content : 'Retailer'
+    },
+    {
+      val : '27,707',
+      content : 'Dealer'
+    },
+    {
+      val : '10,000',
+      content : 'Distributor'
+    },
+    {
+      val : '133',
+      content : 'OEM'
+    },
+  ];
+
+
+  const SecondDataCard = [
+    {
+      val : '1',
+      content : 'Dealer'
+    },
+    {
+      val : '14',
+      content : 'Distributor'
+    },
+      {
+      val : '5',
+      content : 'Others'
+    },
+  ];
+
+
   return (
     <div className='w-[1670px] h-[2030px] bg-gray-300 dark:bg-blue-950/40 dark:text-white rounded-lg mt-14 ml-2  border border-gray-200'>
       <div className="flex justify-start items-start">
-        <MiniCard1 />
-        <MiniCard2 />
+        <MiniCardOp fillData={FirstCardData} title={"Lead"} total={"70,824"} inc={"12.5% from last month"} subtitle={"Total network connections across all channels"} />
+        <MiniCardOp fillData={SecondDataCard} title={"Lead"} total={"70,824"} inc={"12.5% from last month"} subtitle={"Total network connections across all channels"} />
         <MiniCard3 />
       </div>
 
       <div className="flex justify-start items-start">
-        <BarGraph />
+        <BarGraphAll initialData={initialData1} width={"1125px"} widthGraph={1000} title={"Product Category Distribution"}/>
         <MiniCard4 />
       </div>
 
@@ -28,7 +85,7 @@ const MainCard = () => {
       </div>
 
       <div>
-        <BarGraph2 />
+        <BarGraphAll initialData={initialData2} width={"1635px"} widthGraph={1500} title={"Lead Category Distribution"}/>
       </div>
     </div>
   )

@@ -26,7 +26,6 @@ const LineGraph = () => {
   const [chartData, setChartData] = useState(initialData);
   const [isDark, setIsDark] = useState(false);
 
-  // Detect dark mode
   useEffect(() => {
     const root = document.documentElement;
     const updateTheme = () => setIsDark(root.classList.contains("dark"));
@@ -73,7 +72,7 @@ const LineGraph = () => {
         </div>
 
         <div className="flex justify-center gap-2 relative">
-          <label className="bg-primary w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -102,7 +101,7 @@ const LineGraph = () => {
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
-              stroke={isDark ? "#4B5563" : "#E5E7EB"}
+              stroke={isDark ? "#4B5563" : "#DFE5F1"}
             />
             <XAxis
               dataKey="year"
