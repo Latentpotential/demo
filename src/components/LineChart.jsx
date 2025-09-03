@@ -65,14 +65,14 @@ const LineGraph = () => {
   };
 
   return (
-    <div className="h-[550px] w-[494px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white">
+    <div className="h-[550px] w-[494px] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white">
       <div className="flex justify-between w-full mb-8">
         <div className="mt-2">
           <p className="text-xl font-semibold">Yearly Leads Win </p>
         </div>
 
         <div className="flex justify-center gap-2 relative">
-          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-black/20 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -84,7 +84,7 @@ const LineGraph = () => {
 
           <button
             onClick={handleExcelDownload}
-            className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-none flex justify-center space-x-1 items-center text-md"
+            className="bg-white w-[150px] h-[40px] dark:bg-black/20 dark:text-white rounded-lg border border-gray-200 dark:border-none flex justify-center space-x-1 items-center text-md"
           >
             <p>Export Report</p>
             <Download size={18} />
@@ -92,7 +92,7 @@ const LineGraph = () => {
         </div>
       </div>
 
-      <div className="w-full h-[430px] bg-white dark:bg-blue-950/60 rounded-2xl pt-10">
+      <div className="w-full h-[430px] bg-white dark:bg-black/20 rounded-2xl pt-10">
         <ResponsiveContainer width="100%" height="110%">
           <LineChart
             data={chartData}
@@ -101,19 +101,19 @@ const LineGraph = () => {
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
-              stroke={isDark ? "#4B5563" : "#DFE5F1"}
+              stroke={isDark ? "#FFFFFF" : "#DFE5F1"}
             />
             <XAxis
               dataKey="year"
-              stroke={isDark ? "#D1D5DB" : "#374151"}
-              tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+              stroke={isDark ? "#FFFFFF" : "#374151"}
+              tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
               angle={-45}
               textAnchor="end"
               height={70}
             />
             <YAxis
-              stroke={isDark ? "#D1D5DB" : "#374151"}
-              tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+              stroke={isDark ? "#FFFFFF" : "#374151"}
+              tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
             />
             <Tooltip
               contentStyle={{
@@ -125,7 +125,7 @@ const LineGraph = () => {
             <Line
               type="monotone"
               dataKey="LeadsWin"
-              stroke={isDark ? "#3B82F6" : "#14A751"}
+              stroke={isDark ? "#FFFFFF" : "#14A751"}
               strokeWidth={2}
               dot={{ r: 4, strokeWidth: 2 }}
               activeDot={{ r: 6 }}

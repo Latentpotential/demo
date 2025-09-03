@@ -40,7 +40,7 @@ const MainCard2 = ({ tabs, data }) => {
               onClick={() => setActiveTab(tab)}
               className={`text-xl font-semibold transition-colors p-5 rounded-lg ${
                 activeTab === tab
-                  ? "border-b-4 border-green-200 dark:border-blue-950/90 text-primary dark:bg-blue-950/60 dark:text-white"
+                  ? "border-b-4 border-white dark:bg-black/20 text-primary dark:bg-black/20 dark:text-white"
                   : "text-gray-600 dark:text-white"
               }`}
             >
@@ -58,10 +58,10 @@ const MainCard2 = ({ tabs, data }) => {
       </div>
 
       <div className="mt-8">
-        <div className="w-[1640px] bg-white dark:bg-blue-950/40 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
+        <div className="w-[1640px] bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
           <div className="overflow-x-auto border border-gray-200 dark:border-white rounded-lg">
             <table className="w-full">
-              <thead className="bg-green-200/30 dark:bg-blue-950/40 dark:text-white">
+              <thead className="bg-green-200/30 dark:bg-black/20 dark:text-white">
                 <tr>
                   {tableHeaders.map((header) => (
                     <th
@@ -79,7 +79,7 @@ const MainCard2 = ({ tabs, data }) => {
                   filteredData.map((row, idx) => (
                     <tr
                       key={idx}
-                      className="odd:bg-green-100 even:bg-gray-50 dark:odd:bg-blue-950/90 dark:even:bg-blue-950/40 hover:bg-gray-100 text-gray-600 dark:text-white"
+                      className="odd:bg-green-100 even:bg-gray-50 dark:odd:bg-black/10 dark:even:bg-black/40 hover:bg-gray-100 text-gray-600 dark:text-white"
                     >
                       {tableHeaders.map((header) => (
                         <td key={header} className="px-6 py-4">

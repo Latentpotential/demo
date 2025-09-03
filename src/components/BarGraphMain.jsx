@@ -103,7 +103,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
   return (
     <div
       style={{ width: width }}
-      className="h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white"
+      className="h-[570px] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white"
     >
       <div className="flex justify-between w-full">
         <div className="mt-2">
@@ -124,16 +124,16 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             <button
               ref={buttonRef}
               type="button"
-              className="bg-green-200 w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white border dark:border-white flex justify-center items-center gap-3 px-3 rounded-lg"
+              className="bg-green-200 w-[320px] h-[40px] dark:bg-black/20 dark:text-white border dark:border-white flex justify-center items-center gap-3 px-3 rounded-lg"
               onClick={() => setShowCalendar((s) => !s)}
             >
               <div className="flex items-center gap-2">
                 <span className="text-white text-sm">From</span>
-                <span className="bg-green-100 w-[100px] dark:bg-blue-500 text-sm h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] dark:bg-white dark:text-black text-sm h-[26px] rounded-lg flex items-center justify-center">
                   {formattedStart}
                 </span>
                 <span className="text-white">To</span>
-                <span className="bg-green-100 w-[100px] text-sm dark:bg-blue-500 h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] text-sm dark:bg-white dark:text-black h-[26px] rounded-lg flex items-center justify-center">
                   {formattedEnd}
                 </span>
                 <CalendarIcon size={18} className="text-white" />
@@ -158,7 +158,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             )}
           </div>
 
-          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70  border dark:border-white text-white flex justify-center items-center text-md cursor-pointer">
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-black/20  border dark:border-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -170,7 +170,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
 
           <button
             onClick={handleExcelDownload}
-            className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-white flex justify-center space-x-1 items-center text-md"
+            className="bg-white w-[150px] h-[40px] dark:bg-black/20 dark:text-white rounded-lg border border-gray-200 dark:border-white flex justify-center space-x-1 items-center text-md"
           >
             <p>Export Report</p>
             <Download size={18} />
@@ -178,21 +178,21 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
         </div>
       </div>
 
-      <div className="w-full bg-white dark:bg-blue-950/60 rounded-2xl pl-4 pr-4 pb-4 pt-16">
+      <div className="w-full bg-white dark:bg-black/20 rounded-2xl pl-4 pr-4 pb-4 pt-16">
         <BarChart width={widthGraph} height={400} data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
-            stroke={isDark ? "#4B5563" : "#DFE5F1"}
+            stroke={isDark ? "#FFFFFF" : "#DFE5F1"}
           />
           <XAxis
             dataKey="name"
-            stroke={isDark ? "#D1D5DB" : "#374151"}
-            tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+            stroke={isDark ? "#FFFFFF" : "#374151"}
+            tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
           />
           <YAxis
-            stroke={isDark ? "#D1D5DB" : "#374151"}
-            tick={{ fill: isDark ? "#D1D5DB" : "#374151", fontSize: 12 }}
+            stroke={isDark ? "#FFFFFF" : "#374151"}
+            tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
           />
           <Tooltip
             contentStyle={{
@@ -203,7 +203,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
           />
           <Bar
             dataKey="value"
-            fill={isDark ? "#3B82F6" : "#14A751"}
+            fill={isDark ? "#FFFFFF" : "#14A751"}
             radius={[6, 6, 0, 0]}
           />
         </BarChart>

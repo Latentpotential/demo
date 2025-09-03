@@ -57,7 +57,7 @@ const MainCard = () => {
 
 
   return (
-    <div className='w-[1670px] h-[2030px] bg-gray-300 dark:bg-blue-950/40 dark:text-white rounded-lg mt-14 ml-2  border border-gray-200'>
+    <div className='w-[1670px] h-[2030px] bg-gray-300 dark:bg-black/20 dark:text-white rounded-lg mt-14 ml-2  border border-gray-200'>
       <div className="flex justify-start items-start">
         <MiniCardOp data={FirstCardData}  />
         <MiniCardOp data={SecondDataCard} />

@@ -2,7 +2,7 @@ import { Search } from "lucide-react"
 
 const SearchBar = () => {
   return (
-    <div className="flex dark:bg-blue-950/30 dark:text-white dark:border-white items-center w-[530px] h-[55px] bg-white  border border-r-0 rounded-lg mt-10 mr-[580px]">
+    <div className="flex dark:bg-black/20 dark:text-white dark:border-white items-center w-[530px] h-[55px] bg-white  border border-r-0 rounded-lg mt-10 mr-[580px]">
       <div className="w-[55px] h-[55px] rounded-lg flex justify-center items-center px-4">
         <Search size={20} className="text-gray-400 dark:text-white"/>
       </div>
