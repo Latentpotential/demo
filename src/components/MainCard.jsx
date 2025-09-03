@@ -30,47 +30,37 @@ const MainCard = () => {
     { name: "Win", value: 480, date: "2025-09-01" },
   ];
 
-  const FirstCardData = [
-    {
-      val : '50,000',
-      content : 'Retailer'
-    },
-    {
-      val : '27,707',
-      content : 'Dealer'
-    },
-    {
-      val : '10,000',
-      content : 'Distributor'
-    },
-    {
-      val : '133',
-      content : 'OEM'
-    },
-  ];
+  const FirstCardData = {
+    title : "Lead Network",
+    inc : "12.5% from last month",
+    total : "70,824",
+    subtitle : "Total network connections across all channels",
+    fillData : [
+      {content : "Retailer", val : "50,000"},
+      {content : "Dealer", val : "27,707"},
+      {content : "Distributors", val : "10,000"},
+      {content : "OEM", val : "133"},
+    ]
+  };
 
-
-  const SecondDataCard = [
-    {
-      val : '1',
-      content : 'Dealer'
-    },
-    {
-      val : '14',
-      content : 'Distributor'
-    },
-      {
-      val : '5',
-      content : 'Others'
-    },
-  ];
+  const SecondDataCard ={
+    title : "Customer Network",
+    inc : "2.3% growth rate",
+    total : "6",
+    subtitle : "Active customer base and distribution network",
+    fillData : [
+      {content : "Dealer", val : "1"},
+      {content : "Distributors", val : "14"},
+      {content : "Others", val : "5"},
+    ]
+  };
 
 
   return (
     <div className='w-[1670px] h-[2030px] bg-gray-300 dark:bg-blue-950/40 dark:text-white rounded-lg mt-14 ml-2  border border-gray-200'>
       <div className="flex justify-start items-start">
-        <MiniCardOp fillData={FirstCardData} title={"Lead"} total={"70,824"} inc={"12.5% from last month"} subtitle={"Total network connections across all channels"} />
-        <MiniCardOp fillData={SecondDataCard} title={"Lead"} total={"70,824"} inc={"12.5% from last month"} subtitle={"Total network connections across all channels"} />
+        <MiniCardOp data={FirstCardData}  />
+        <MiniCardOp data={SecondDataCard} />
         <MiniCard3 />
       </div>
 

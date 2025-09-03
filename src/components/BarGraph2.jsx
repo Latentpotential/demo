@@ -14,8 +14,18 @@ import * as XLSX from "xlsx";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
+const initialData = [
+  { name: "Lead Bank", value: 60, date: "2025-08-25" },
+  { name: "Validate", value: 480, date: "2025-08-26" },
+  { name: "No Response", value: 120, date: "2025-08-28" },
+  { name: "Close", value: 1270, date: "2025-08-29" },
+  { name: "Lost", value: 0, date: "2025-08-30" },
+  { name: "Disqualified", value: 2423, date: "2025-08-31" },
+  { name: "Qualified", value: 400, date: "2025-09-01" },
+  { name: "Win", value: 480, date: "2025-09-01" },
+];
 
-const BarGraphAll = ({initialData, width, widthGraph, title}) => {
+const BarGraph2 = () => {
   const [allData, setAllData] = useState(initialData);
   const [chartData, setChartData] = useState(initialData);
   const [dateRange, setDateRange] = useState([
@@ -55,6 +65,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
+  // Filter data by date range
   useEffect(() => {
     const filtered = allData.filter((item) =>
       isWithinInterval(parseISO(item.date), {
@@ -101,13 +112,10 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
   };
 
   return (
-    <div
-      style={{ width: width }}
-      className="h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white"
-    >
+    <div className="w-[1635px] h-[570px] bg-white dark:bg-blue-950/70 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white">
       <div className="flex justify-between w-full">
         <div className="mt-2">
-          <p className="text-xl font-semibold">{title}</p>
+          <p className="text-xl font-semibold">Product Category Distribution</p>
         </div>
 
         <div className="flex justify-center gap-2 relative">
@@ -124,16 +132,16 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             <button
               ref={buttonRef}
               type="button"
-              className="bg-green-200 w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white border dark:border-white flex justify-center items-center gap-3 px-3 rounded-lg"
+              className="bg-green-200 w-[320px] h-[40px] dark:bg-blue-950/70 dark:text-white flex justify-center items-center gap-3 px-3 rounded-lg"
               onClick={() => setShowCalendar((s) => !s)}
             >
               <div className="flex items-center gap-2">
                 <span className="text-white text-sm">From</span>
-                <span className="bg-green-100 w-[100px] dark:bg-blue-500 text-sm h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] dark:bg-blue-950/70 text-sm h-[26px] rounded-lg flex items-center justify-center">
                   {formattedStart}
                 </span>
                 <span className="text-white">To</span>
-                <span className="bg-green-100 w-[100px] text-sm dark:bg-blue-500 h-[26px] rounded-lg flex items-center justify-center">
+                <span className="bg-green-100 w-[100px] text-sm dark:bg-blue-950/70 h-[26px] rounded-lg flex items-center justify-center">
                   {formattedEnd}
                 </span>
                 <CalendarIcon size={18} className="text-white" />
@@ -158,7 +166,8 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             )}
           </div>
 
-          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70  border dark:border-white text-white flex justify-center items-center text-md cursor-pointer">
+          {/* Upload */}
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-blue-950/70 dark:text-white text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -168,9 +177,10 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             />
           </label>
 
+          {/* Export */}
           <button
             onClick={handleExcelDownload}
-            className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-white flex justify-center space-x-1 items-center text-md"
+            className="bg-white w-[150px] h-[40px] dark:bg-blue-950/70 dark:text-white rounded-lg border border-gray-200 dark:border-none flex justify-center space-x-1 items-center text-md"
           >
             <p>Export Report</p>
             <Download size={18} />
@@ -178,12 +188,13 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
         </div>
       </div>
 
+      {/* Chart */}
       <div className="w-full bg-white dark:bg-blue-950/60 rounded-2xl pl-4 pr-4 pb-4 pt-16">
-        <BarChart width={widthGraph} height={400} data={chartData}>
+        <BarChart width={1500} height={400} data={chartData}>
           <CartesianGrid
             strokeDasharray="3 3"
             vertical={false}
-            stroke={isDark ? "#4B5563" : "#DFE5F1"}
+            stroke={isDark ? "#4B5563" : "#E5E7EB"}
           />
           <XAxis
             dataKey="name"
@@ -212,4 +223,4 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
   );
 };
 
-export default BarGraphAll;
+export default BarGraph2;
