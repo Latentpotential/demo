@@ -43,7 +43,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
     <div className="mb-1">
       <button
         onClick={handleClick}
-        className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left ${
+        className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border dark:border-neutral-600 ${
           nature === "secondary" ? "bg-black text-white dark:text-white" : "bg-white text-black "
         } rounded-lg dark:bg-black/50 dark:text-white`}
       >

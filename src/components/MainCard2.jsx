@@ -40,7 +40,7 @@ const MainCard2 = ({ tabs, data }) => {
               onClick={() => setActiveTab(tab)}
               className={`text-xl font-semibold transition-colors p-5 rounded-lg ${
                 activeTab === tab
-                  ? "border-b-4 border-white dark:bg-black/20 text-primary dark:bg-black/20 dark:text-white"
+                  ? "border-b-4 border-white dark:bg-black/20 text-primary  dark:text-white"
                   : "text-gray-600 dark:text-white"
               }`}
             >
@@ -58,8 +58,8 @@ const MainCard2 = ({ tabs, data }) => {
       </div>
 
       <div className="mt-8">
-        <div className="w-[1640px] bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-gray-200">
-          <div className="overflow-x-auto border border-gray-200 dark:border-white rounded-lg">
+        <div className="w-[1640px] bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-gray-500">
+          <div className="overflow-x-auto border border-gray-200 dark:border-gray-500 rounded-lg">
             <table className="w-full">
               <thead className="bg-green-200/30 dark:bg-black/20 dark:text-white">
                 <tr>
@@ -74,7 +74,7 @@ const MainCard2 = ({ tabs, data }) => {
                   <th className="px-6 py-4 text-left text-md font-medium">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-300 border-t border-b dark:border-white border-gray-200">
+              <tbody className="divide-y divide-gray-500 border-t border-b dark:border-gray-500 border-gray-200">
                 {filteredData.length > 0 ? (
                   filteredData.map((row, idx) => (
                     <tr

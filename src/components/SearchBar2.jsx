@@ -2,8 +2,8 @@ import { Search } from "lucide-react";
 
 const SearchBar2 = ({ searchQuery, setSearchQuery, dateFilter, setDateFilter }) => {
   return (
-    <div className="flex items-center justify-center w-[530px] h-[55px] dark:bg-black/20 dark:text-white dark:border-white bg-white border rounded-lg mt-8 shadow-sm">
-      <div className="w-[220px] h-[55px] dark:text-white dark:border-white flex items-center px-4 justify-center space-x-3 border-r">
+    <div className="flex items-center justify-center w-[530px] h-[55px] dark:bg-black/20 dark:text-white dark:border-gray-500 bg-white border rounded-lg mt-8 shadow-sm">
+      <div className="w-[220px] h-[55px] dark:text-white dark:border-gray-500 flex items-center px-4 justify-center space-x-3 border-r">
         <span className="font-medium mt-1 text-gray-700 dark:text-white">Date:</span>
         <input
           type="date"

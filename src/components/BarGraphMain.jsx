@@ -103,7 +103,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
   return (
     <div
       style={{ width: width }}
-      className="h-[570px] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-white"
+      className="h-[570px] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-gray-500"
     >
       <div className="flex justify-between w-full">
         <div className="mt-2">
@@ -124,7 +124,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             <button
               ref={buttonRef}
               type="button"
-              className="bg-green-200 w-[320px] h-[40px] dark:bg-black/20 dark:text-white border dark:border-white flex justify-center items-center gap-3 px-3 rounded-lg"
+              className="bg-green-200 w-[320px] h-[40px] dark:bg-black/20 dark:text-white border dark:border-gray-500 flex justify-center items-center gap-3 px-3 rounded-lg"
               onClick={() => setShowCalendar((s) => !s)}
             >
               <div className="flex items-center gap-2">
@@ -158,7 +158,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
             )}
           </div>
 
-          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-black/20  border dark:border-white text-white flex justify-center items-center text-md cursor-pointer">
+          <label className="bg-green-200 w-[120px] h-[40px] rounded-lg dark:bg-black/20  border dark:border-gray-500 text-white flex justify-center items-center text-md cursor-pointer">
             Upload Data
             <input
               type="file"
@@ -170,7 +170,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
 
           <button
             onClick={handleExcelDownload}
-            className="bg-white w-[150px] h-[40px] dark:bg-black/20 dark:text-white rounded-lg border border-gray-200 dark:border-white flex justify-center space-x-1 items-center text-md"
+            className="bg-white w-[150px] h-[40px] dark:bg-black/20 dark:text-white rounded-lg border border-gray-200 dark:border-gray-500 flex justify-center space-x-1 items-center text-md"
           >
             <p>Export Report</p>
             <Download size={18} />

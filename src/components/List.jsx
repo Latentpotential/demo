@@ -13,14 +13,13 @@ export default function DataTable() {
   ];
 
   return (
-    <div className="w-[1125px] h-[550px] bg-white dark:bg-black/20 dark:border-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200  transition-colors">
+    <div className="w-[1125px] h-[550px] bg-white dark:bg-black/20 dark:border-gray-500 rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200  transition-colors">
       <h2 className="text-xl font-semibold mb-4 mt-4 text-gray-900 dark:text-white">
         Lead Conversion - Source Wise
       </h2>
 
       <div className="overflow-x-hidden">
-        <table className="min-w-full border border-gray-200 dark:border-white rounded-lg">
-          {/* Table Head */}
+        <table className="min-w-full border border-gray-200 dark:border-gray-500 rounded-lg">
           <thead className="bg-gray-100 dark:bg-black/20">
             <tr>
               <th className="px-3 py-3 text-left text-sm font-medium text-gray-900 dark:text-white">Sr. No</th>
@@ -37,8 +36,7 @@ export default function DataTable() {
             </tr>
           </thead>
 
-          {/* Table Body */}
-          <tbody className="divide-y divide-gray-300 dark:divide-white border-t border-gray-200 dark:border-white">
+          <tbody className="divide-y divide-gray-300 dark:divide-gray-500 border-t border-gray-200 dark:border-gray-500">
             {orders.map((order) => (
               <tr key={order.id} className="hover:bg-gray-100 dark:hover:bg-black/50 transition-colors">
                 <td className="px-3 py-3 text-gray-900 dark:text-white">{order.id}</td>

@@ -29,7 +29,7 @@ export default {
   			'gray-200': '#DBDBDB',
   			'gray-300': '#F8FAFD',
   			'gray-400': '#A5AEBC',
-  			'gray-500': '#363435',
+  			'gray-500': '#383939',
         'green-200': "#14A751",
         'green-100': "#E1FFF0",
   			background: 'hsl(var(--background))',
