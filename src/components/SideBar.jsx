@@ -25,7 +25,7 @@ import {
   Phone,
   ScrollText,
 } from "lucide-react";
-import CheckBoxList from "./CheckBoxList";
+import ButtonList from "./SubButton";
 
 const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }) => {
   const [open, setOpen] = useState(false);
@@ -40,10 +40,10 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
   };
 
   return (
-    <div className="mb-1">
+    <div className="mb-1 ">
       <button
         onClick={handleClick}
-        className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border dark:border-neutral-600 ${
+        className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border border-white dark:border-neutral-600 ${
           nature === "secondary" ? "bg-black text-white dark:text-white" : "bg-white text-black "
         } rounded-lg dark:bg-black/50 dark:text-white`}
       >
@@ -55,11 +55,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
       </button>
 
       {collapsible && open && (
-        <div className="pt-4 pb-4 pr-4 rounded-lg w-[270px] text-white bg-gray-500 dark:bg-white dark:text-black">
-          <div className="flex ml-5 items-center w-full text-xl">
-            <div className="mr-6">{icon}</div>
-            <div>{title}</div>
-          </div>
+        <div className=" rounded-lg w-full text-white bg-gray-500 dark:bg-white dark:text-black">
           {content}
         </div>
       )}
@@ -77,21 +73,21 @@ const SidebarItems = [
   },
   {
     title: "Lead",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <Funnel size={30} />,
     nature: "primary",
     collapsible: true,
   },
   {
     title: "Lead Old",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <ConciergeBell size={30} />,
     nature: "primary",
     collapsible: true,
   },
   {
     title: "Customer Network",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <Network size={30} />,
     nature: "primary",
     collapsible: true,
@@ -176,35 +172,34 @@ const SidebarItems = [
   },
   {
     title: "Master",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <UserStar size={30} />,
     nature: "primary",
     collapsible: true,
   },
   {
     title: "LMS Report",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <ChartCandlestick size={30} />,
     nature: "primary",
     collapsible: true,
   },
   {
     title: "BPR Report",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <FileDiff size={30} />,
     nature: "primary",
     collapsible: true,
   },
   {
     title: "Export Report",
-    content: <CheckBoxList />,
+    content: <ButtonList />,
     icon: <FileDown size={30} />,
     nature: "primary",
     collapsible: true,
   },
 ];
 
-// Sidebar Component
 const SideBar = () => {
   return (
     <div className="max-w-md mx-auto mt-10">
