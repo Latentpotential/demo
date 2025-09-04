@@ -202,7 +202,7 @@ const SidebarItems = [
 
 const SideBar = () => {
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="relative  top-24 bg-white dark:bg-inherit max-w-md mx-auto mt-10">
       {SidebarItems.map((item, index) => (
         <SidebarItem
           key={index}

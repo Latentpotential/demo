@@ -11,7 +11,7 @@ const SecondPage = () => {
         <NavBar showSeach={false} />
       </div>
       <div className=" pl-9 flex w-full overflow-x-hidden gap-4">
-        <div className='mt-8'>
+        <div className='mt-8 overflow-y-scroll scrollbar-hide'>
           <SideBar />
         </div>
         <DataRender />
