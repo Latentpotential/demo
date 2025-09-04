@@ -45,7 +45,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
         onClick={handleClick}
         className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border border-white dark:border-neutral-600 ${
           nature === "secondary" ? "bg-black text-white dark:text-white" : "bg-white text-black "
-        } rounded-lg dark:bg-black/50 dark:text-white`}
+        } rounded-lg dark:bg-black/30 dark:text-white`}
       >
         <div className="flex items-center w-full">
           <div className="mr-6">{icon}</div>
@@ -69,7 +69,7 @@ const SidebarItems = [
     icon: <Grid2X2 size={30} />,
     nature: "secondary",
     collapsible: false,
-    path: "/", // Add navigation path
+    path: "/",
   },
   {
     title: "Lead",
@@ -202,7 +202,7 @@ const SidebarItems = [
 
 const SideBar = () => {
   return (
-    <div className="relative  top-24 bg-white dark:bg-inherit max-w-md mx-auto mt-10">
+    <div className="relative top-24 bg-white h-[100%] dark:bg-black/30  max-w-md mx-auto mt-10">
       {SidebarItems.map((item, index) => (
         <SidebarItem
           key={index}
