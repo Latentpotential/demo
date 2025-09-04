@@ -33,14 +33,14 @@ const MainCard2 = ({ tabs, data }) => {
   return (
     <div className="w-[1660px] overflow-x-hidden">
       <div className="flex justify-between items-center">
-        <div className="flex justify-between text-xl mt-5 ml-5 items-center space-x-16">
+        <div className=" text-xl mt-5 ml-5 items-center">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`text-xl font-semibold transition-colors p-5 rounded-lg ${
+              className={`text-xl font-semibold place-items-start w-40 mr-4 transition-colors pt-5 pr-24 pb-5  ${
                 activeTab === tab
-                  ? "border-b-4 border-white dark:bg-black/20 text-primary  dark:text-white"
+                  ? "border-b-4 border-white text-primary  dark:text-white"
                   : "text-gray-600 dark:text-white"
               }`}
             >
