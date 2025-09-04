@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   BrickWallShield,
@@ -80,6 +80,7 @@ const SidebarItem = ({
 const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [selected, setSelected] = useState("");
+  const location = useLocation();
   
   const SidebarItems = [
   { title: "Dashboard", icon: <Grid2X2 size={30} />, path: "/" },
@@ -107,22 +108,26 @@ const SideBar = () => {
 
   return (
     <div className="fixed top-24 w-[270px] h-screen overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
-      <div className="text-lg mb-4 px-2 py-3 w-[180px] text-wrap flex justify-around items-center rounded-lg bg-green-200 dark:bg-inherit border border-white dark:border-gray-500 text-white dark:text-green-500"><h1>{selected || "None"}</h1></div>
-      <div className="fixed top-40 w-[270px] h-screen overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
-      {SidebarItems.map((item, index) => (
-        <SidebarItem
-          key={index}
-          index={index}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          title={item.title}
-          content={item.content}
-          icon={item.icon}
-          collapsible={item.collapsible}
-          path={item.path}
-        />
-      ))}
-    </div>
+      {location.pathname === "/select" && (
+        <div className="text-lg mb-4 px-2 py-3 w-[180px] text-wrap flex justify-around items-center rounded-lg bg-green-200 dark:bg-inherit border border-white dark:border-gray-500 text-white dark:text-green-500">
+          {selected || "None"}
+        </div>
+      )}
+      <div className="fixed  w-[270px] h-screen overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto">
+        {SidebarItems.map((item, index) => (
+          <SidebarItem
+            key={index}
+            index={index}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            title={item.title}
+            content={item.content}
+            icon={item.icon}
+            collapsible={item.collapsible}
+            path={item.path}
+          />
+        ))}
+      </div>
     </div>
   );
 };
