@@ -31,8 +31,8 @@ const MainCard2 = ({ tabs, data }) => {
   });
 
   return (
-    <div className="w-[1680px] h-screen relative left-72 top-32 border pr-2 rounded-lg border-stone-300 dark:border-neutral-700 overflow-x-hidden">
-      <div className=" flex justify-between items-center pr-3">
+    <div className="w-[1680px] h-screen relative left-72 top-40 border pr-2 rounded-lg border-stone-300 dark:border-neutral-700 overflow-x-hidden">
+      <div className=" flex justify-between items-center pr-2">
         <div className="flex justify-center text-xl mt-5 ml-5 items-center">
           {tabs.map((tab) => (
             <button
