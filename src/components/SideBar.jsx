@@ -40,7 +40,7 @@ const SidebarItem = ({ title, content, icon, nature, collapsible = false, path }
   };
 
   return (
-    <div className="mb-1 ">
+    <div className="mb-1">
       <button
         onClick={handleClick}
         className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border border-white dark:border-neutral-600 ${
@@ -202,7 +202,7 @@ const SidebarItems = [
 
 const SideBar = () => {
   return (
-    <div className="relative top-24 bg-white h-[100%] dark:bg-black/30  max-w-md mx-auto mt-10">
+    <div className="fixed top-24 w-[270px] h-screen overflow-y-auto bg-white dark:bg-black/30 shadow-lg scrollbar-hide max-w-md mx-auto mt-10">
       {SidebarItems.map((item, index) => (
         <SidebarItem
           key={index}
