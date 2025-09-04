@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchBar2 from "./SearchBar2";
+import ButtonList from "./SubButton";
 
 const MainCard2 = ({ tabs, data }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -30,6 +31,7 @@ const MainCard2 = ({ tabs, data }) => {
     return matchesText && matchesDate;
   });
 
+
   return (
     <div className="w-[1680px] h-screen relative left-72 top-40 border pr-2 rounded-lg border-stone-300 dark:border-neutral-700 overflow-x-hidden">
       <div className=" flex justify-between items-center pr-2">
@@ -40,7 +42,7 @@ const MainCard2 = ({ tabs, data }) => {
               onClick={() => setActiveTab(tab)}
               className={`text-xl font-semibold place-items-start w-40 mr-4 transition-colors pt-5 pr-24 pb-5  ${
                 activeTab === tab
-                  ? "border-b-4 border-green-200 dark:border-white text-primary  dark:text-white"
+                  ? "border-b-4 border-green-500 text-green-500 "
                   : "text-gray-600 dark:text-white"
               }`}
             >
@@ -63,7 +65,7 @@ const MainCard2 = ({ tabs, data }) => {
         <div className="w-[1640px] bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-stone-300 dark:border-gray-500">
           <div className="overflow-x-auto border border-stone-300 dark:border-gray-500 rounded-lg">
             <table className="w-full">
-              <thead className="bg-green-200 dark:bg-black/20 dark:text-white text-stone-100">
+              <thead className="bg-green-200 dark:bg-black/20 dark:text-green-500 text-black">
                 <tr>
                   {tableHeaders.map((header) => (
                     <th

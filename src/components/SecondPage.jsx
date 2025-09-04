@@ -6,7 +6,7 @@ import DataRender from './DataRender'
 
 const SecondPage = () => {
   return (
-    <div className="overflow-x-hidden  h-screen dark:bg-black/80">
+    <div className="overflow-x-hidden  h-screen dark:bg-gray-600">
       <div>
         <NavBar showSeach={false} />
       </div>
