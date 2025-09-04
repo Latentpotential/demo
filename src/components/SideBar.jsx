@@ -202,7 +202,7 @@ const SidebarItems = [
 
 const SideBar = () => {
   return (
-    <div className="fixed top-24 w-[270px] h-screen overflow-y-auto bg-white dark:bg-black/30 shadow-lg scrollbar-hide max-w-md mx-auto mt-10">
+    <div className="fixed top-24 w-[270px] h-screen overflow-y-auto bg-white dark:bg-black/30 scrollbar-hide max-w-md mx-auto mt-10">
       {SidebarItems.map((item, index) => (
         <SidebarItem
           key={index}
