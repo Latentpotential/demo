@@ -68,7 +68,7 @@ const LineGraph = () => {
     <div className="h-auto w-[50%] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 mr-4 space-y-3 border border-gray-200 dark:border-gray-500">
       <div className="flex justify-between w-full mb-8">
         <div className="mt-2">
-          <p className="text-xl font-semibold text-nowrap">Yearly Leads Win </p>
+          <p className="text-xl font-semibold text-nowrap">Leads Win </p>
         </div>
 
         <div className="flex justify-center gap-2 relative">
