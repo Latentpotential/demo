@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function ButtonList({ onSelect }) {
   const navigate = useNavigate();
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const items = [
     { label: "OEM", path: "/select" },
@@ -13,23 +15,28 @@ export default function ButtonList({ onSelect }) {
     { label: "Sub Dealer", path: "/select" },
   ];
 
-  const handleClick = (e, item) => {
+  const handleClick = (e, item, index) => {
     e.stopPropagation();
+    setSelectedIndex(index);
     if (onSelect) onSelect(item.label);
     navigate(item.path);
   };
 
   return (
-    <div className="dark:bg-black/50 rounded-lg">
-      <div className="flex flex-col items-start dark:bg-black/50 rounded-lg">
+    <div className="dark:bg-gray-600 rounded-lg border border-gray-500 p-4">
+      <div className="flex flex-col gap-3">
         {items.map((item, index) => (
           <button
             key={index}
             type="button"
-            onClick={(e) => handleClick(e, item)}
-            className="w-full text-left px-8 py-4 transition bg-black/30 text-white hover:bg-black/50"
+            onClick={(e) => handleClick(e, item, index)}
+            className={`w-full text-left px-6 py-3 rounded-xl border transition-all 
+              ${selectedIndex === index 
+                ? "bg-green-200 text-white border-green-200 shadow-md" 
+                : "bg-black/50 dark:dark:bg-black/50 text-black dark:text-white border-gray-500 hover:bg-gray-200 dark:hover:bg-black/50"}
+            `}
           >
-            {item.label}
+            <p className="font-semibold">{item.label}</p>
           </button>
         ))}
       </div>
