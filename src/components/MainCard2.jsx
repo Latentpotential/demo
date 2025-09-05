@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SearchBar2 from "./SearchBar2";
-import ButtonList from "./SubButton";
 
 const MainCard2 = ({ tabs, data }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
