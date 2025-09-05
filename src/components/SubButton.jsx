@@ -23,17 +23,17 @@ export default function ButtonList({ onSelect }) {
   };
 
   return (
-    <div className="dark:bg-gray-600 rounded-lg border border-gray-500 p-4">
+    <div className="bg-gray-600 rounded-lg border border-gray-500 p-4">
       <div className="flex flex-col gap-3">
         {items.map((item, index) => (
           <button
             key={index}
             type="button"
             onClick={(e) => handleClick(e, item, index)}
-            className={`w-full text-left px-6 py-3 rounded-xl border transition-all 
+            className={`w-full text-left px-6 py-2 rounded-xl border transition-all 
               ${selectedIndex === index 
                 ? "bg-green-200 text-white border-green-200 shadow-md" 
-                : "bg-black/50 dark:dark:bg-black/50 text-black dark:text-white border-gray-500 hover:bg-gray-200 dark:hover:bg-black/50"}
+                : "bg-black/50 dark:bg-black/50 text-white border-gray-500 hover:bg-green-500 dark:hover:bg-black/20"}
             `}
           >
             <p className="font-semibold">{item.label}</p>
