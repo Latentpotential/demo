@@ -32,9 +32,9 @@ const MainCard2 = ({ tabs, data }) => {
 
 
   return (
-    <div className="w-[1680px] h-screen relative left-72 top-40 border pr-2 rounded-lg border-stone-300 dark:border-neutral-700 overflow-x-hidden">
-      <div className=" flex justify-between items-center pr-2">
-        <div className="flex justify-center text-xl mt-5 ml-5 items-center">
+    <div className="w-[80vw] h-screen relative left-72 top-40  border pr-2 rounded-lg border-stone-300 dark:border-neutral-700">
+      <div className=" flex justify-between items-center pr-2  ">
+        <div className="flex justify-center text-xl mt-5 ml-5 items-center ">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -60,10 +60,10 @@ const MainCard2 = ({ tabs, data }) => {
         </div>
       </div>
 
-      <div className="mt-8">
-        <div className="w-[1640px] bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-stone-300 dark:border-gray-500">
-          <div className="overflow-x-auto border border-stone-300 dark:border-gray-500 rounded-lg">
-            <table className="w-full">
+      <div className="mt-8 overflow-x-scroll scrollbar-hide">
+        <div className="w-auto bg-white dark:bg-black/20 dark:text-white rounded-lg ml-4 p-4 border border-stone-300 dark:border-gray-500">
+          <div className="overflow-x-auto scrollbar-hide border border-stone-300 dark:border-gray-500 rounded-lg">
+            <table className="w-full overflow-x-hidden overflow-y-scroll scrollbar-hide">
               <thead className="bg-green-200 dark:bg-black/20 dark:text-green-500 text-black">
                 <tr>
                   {tableHeaders.map((header) => (

@@ -3,7 +3,7 @@ import { ArrowUpRight, CalendarClock, MapPinned } from 'lucide-react'
 
 const MiniCard4Comp = ({imag, num, quotation}) => {
   return (
-    <div className='bg-white h-[277px] w-[494px] flex justify-between dark:bg-black/20 dark:text-white dark:border-gray-500 items-center border border-gray-200 mt-4 ml-4 p-4 rounded-lg'>
+    <div className='bg-white h-64 w-[100%] flex justify-between dark:bg-black/20 dark:text-white dark:border-gray-500 items-center border border-gray-200  mt-4 ml-3 p-4 rounded-lg'>
       <div className='bg-green-100 dark:bg-black/20 dark:text-white dark:border-gray-500 text-green-200 w-[150px] h-[190px] flex justify-center items-center rounded-lg  p-4 '>
         {imag}
       </div>
@@ -22,7 +22,7 @@ const MiniCard4Comp = ({imag, num, quotation}) => {
 
 const MiniCard4 = () => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col space-y-8 h-auto w-auto mr-7 '>
       <MiniCard4Comp 
         imag={<CalendarClock size={100}/>}
         num={'400'}
@@ -31,7 +31,7 @@ const MiniCard4 = () => {
       <MiniCard4Comp 
         imag={<MapPinned size={100}/>}
         num={'3500'}
-        quotation={'Aug 25 Sales Activities'}
+        quotation={'Sales Activities'}
       />
     </div>
   )

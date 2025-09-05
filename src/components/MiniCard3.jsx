@@ -1,4 +1,4 @@
-import DataMon from '../assets/datamon.svg'
+
 import { Archive, FileSearch, ScrollText } from 'lucide-react';
 
 const dataitema = [
@@ -24,12 +24,12 @@ const dataitema = [
 
 const MiniCard3Comp = ({title, num, quotation, imag}) => {
   return (
-    <div className="w-[240px] h-[220px] bg-white rounded-lg mt-4 ml-4 pl-6 pr-4 pt-4 pb-4 dark:bg-black/20 dark:text-white dark:border-gray-500 border border-gray-200">
-      <div className='space-y-3'>
+    <div className="w-[100%] h-auto bg-white rounded-lg space-y-4 mt-4 ml-3 pl-6 pr-4 pt-5 pb-4 dark:bg-black/20 dark:text-white dark:border-gray-500 border border-gray-200">
+      <div className=' space-y-3'>
         <div>
           <p className="text-md">{title}</p>
         </div>
-        <div className="space-y-1 ">
+        <div className='space-y-1'>
           <p className="text-4xl font-bold">{num}</p>
           <p className="text-gray-400 dark:text-white">{quotation}</p>
         </div>
@@ -43,16 +43,18 @@ const MiniCard3Comp = ({title, num, quotation, imag}) => {
 
 const MiniCard3 = () => {
   return (
-    <div className='flex'>
-      {dataitema.map((item, index) => (
-        <MiniCard3Comp 
-          key={index}
-          title={item.title}
-          num={item.num}
-          quotation={item.quotation}
-          imag={item.imag}
-        />
-      ))}
+    <div className='w-[180%] mr-4'>
+      <div className='flex space-x-3'>
+        {dataitema.map((item, index) => (
+          <MiniCard3Comp 
+            key={index}
+            title={item.title}
+            num={item.num}
+            quotation={item.quotation}
+            imag={item.imag}
+          />
+        ))}
+      </div>
     </div>
   )
 }

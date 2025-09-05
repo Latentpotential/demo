@@ -76,7 +76,6 @@ const SidebarItem = ({
 };
 
 
-
 const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [selected, setSelected] = useState("");
@@ -107,13 +106,13 @@ const SideBar = () => {
 ];
 
   return (
-    <div className="fixed top-24 w-[270px] h-screen overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
+    <div className="fixed top-24 w-[270px]  h-auto overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
       {location.pathname === "/select" && (
         <div className="text-lg mb-4 px-2 py-3 w-[180px] text-wrap flex justify-around items-center rounded-lg bg-green-200 dark:bg-inherit border border-white dark:border-gray-500 text-white dark:text-green-500">
           {selected || "None"}
         </div>
       )}
-      <div className="fixed  w-[270px] h-screen overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto">
+      <div className="fixed  w-[270px] h-[100%] overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto">
         {SidebarItems.map((item, index) => (
           <SidebarItem
             key={index}

@@ -19,7 +19,7 @@ const data = {
 
 export default function DataRender() {
   return (
-    <div clas Name="p-4 overflow-x-hidden">
+    <div className="p-4 w-full overflow-y-scroll overflow-x-hidden scrollbar-hide ">
       <MainCard2 tabs={tabs} data={data} />
     </div>
   );

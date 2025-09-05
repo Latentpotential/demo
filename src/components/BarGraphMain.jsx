@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 import { DateRange } from "react-date-range";
 import { format, isWithinInterval, parseISO } from "date-fns";
@@ -15,7 +16,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 
-const BarGraphAll = ({initialData, width, widthGraph, title}) => {
+const BarGraphAll = ({initialData, title}) => {
   const [allData, setAllData] = useState(initialData);
   const [chartData, setChartData] = useState(initialData);
   const [dateRange, setDateRange] = useState([
@@ -102,8 +103,7 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
 
   return (
     <div
-      style={{ width: width }}
-      className="h-[570px] bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-gray-500"
+      className={`w-[100%] h-auto bg-white dark:bg-black/20 dark:text-white rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200 dark:border-gray-500`}
     >
       <div className="flex justify-between w-full">
         <div className="mt-2">
@@ -178,35 +178,37 @@ const BarGraphAll = ({initialData, width, widthGraph, title}) => {
         </div>
       </div>
 
-      <div className="w-full bg-white dark:bg-black/20 rounded-2xl pl-4 pr-4 pb-4 pt-16">
-        <BarChart width={widthGraph} height={400} data={chartData}>
-          <CartesianGrid
-            strokeDasharray="3 3"
-            vertical={false}
-            stroke={isDark ? "#FFFFFF" : "#DFE5F1"}
-          />
-          <XAxis
-            dataKey="name"
-            stroke={isDark ? "#FFFFFF" : "#374151"}
-            tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
-          />
-          <YAxis
-            stroke={isDark ? "#FFFFFF" : "#374151"}
-            tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
-          />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: isDark ? "#1F2937" : "#FFFFFF",
-              color: isDark ? "#F9FAFB" : "#111827",
-              border: "none",
-            }}
-          />
-          <Bar
-            dataKey="value"
-            fill={isDark ? "#FFFFFF" : "#14A751"}
-            radius={[6, 6, 0, 0]}
-          />
-        </BarChart>
+      <div className="w-full bg-white dark:bg-black/20 rounded-2xl pl-4 pr-4 pb-4 pt-11">
+        <ResponsiveContainer  width="100%" height={400}>
+          <BarChart data={chartData} >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              vertical={false}
+              stroke={isDark ? "#FFFFFF" : "#DFE5F1"}
+            />
+            <XAxis
+              dataKey="name"
+              stroke={isDark ? "#FFFFFF" : "#374151"}
+              tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
+            />
+            <YAxis
+              stroke={isDark ? "#FFFFFF" : "#374151"}
+              tick={{ fill: isDark ? "#FFFFFF" : "#374151", fontSize: 12 }}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: isDark ? "#1F2937" : "#FFFFFF",
+                color: isDark ? "#F9FAFB" : "#111827",
+                border: "none",
+              }}
+            />
+            <Bar
+              dataKey="value"
+              fill={isDark ? "#FFFFFF" : "#14A751"}
+              radius={[6, 6, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>        
       </div>
     </div>
   );

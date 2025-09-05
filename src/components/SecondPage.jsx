@@ -7,14 +7,14 @@ import DataRender from './DataRender'
 const SecondPage = () => {
   return (
     <div className="overflow-x-hidden  h-screen dark:bg-gray-600">
-      <div>
-        <NavBar showSeach={false} />
-      </div>
-      <div className=" pl-9 flex w-full overflow-x-hidden overflow-y-scroll scrollbar-hide gap-4">
-        <div className='mt-8 overflow-y-scroll scrollbar-hide'>
+      <NavBar showSeach={false} />
+      <div className="overflow-x-hidden overflow-y-scroll scrollbar-hide absolute w-full dark:bg-gray-600 flex pr-6 gap-4">
+        <div className='ml-10'>
           <SideBar />
         </div>
-        <DataRender />
+        <div className='w-full overflow-y-scroll scrollbar-hide'>
+          <DataRender />
+        </div>
       </div>
     </div>
   )

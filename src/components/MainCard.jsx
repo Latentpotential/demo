@@ -57,25 +57,27 @@ const MainCard = () => {
 
 
   return (
-    <div className='w-[1670px] h-[2030px] left-72 relative top-24 bg-gray-300 dark:bg-black/20 dark:text-white rounded-lg mt-14 ml-2 border border-gray-200 dark:border-gray-500'>
-      <div className="flex justify-start items-start">
-        <MiniCardOp data={FirstCardData}  />
-        <MiniCardOp data={SecondDataCard} />
-        <MiniCard3 />
-      </div>
+    <div className='w-[81.5vw] h-auto left-72 relative  top-24 overflow-x-scroll scrollbar-hide bg-gray-300 dark:bg-black/20 dark:text-white rounded-lg mt-14 ml-2 border border-gray-200 dark:border-gray-500'>
+      <div className="w-auto">
+        <div className="w-auto h-auto flex justify-start items-start">
+          <MiniCardOp data={FirstCardData}  />
+          <MiniCardOp data={SecondDataCard} />
+          <MiniCard3 />
+        </div>
 
-      <div className="flex justify-start items-start">
-        <BarGraphAll initialData={initialData1} width={"1125px"} widthGraph={1000} title={"Product Category Distribution"}/>
-        <MiniCard4 />
-      </div>
+        <div className="w-full flex justify-start items-start">
+          <BarGraphAll initialData={initialData1}  title={"Product Category Distribution"}/>
+          <MiniCard4 />
+        </div>
 
-      <div className="flex justify-start items-start">
-        <DataTable />
-        <MyLineChart />
-      </div>
+        <div className="w-full flex justify-start items-start">
+          <DataTable />
+          <MyLineChart />
+        </div>
 
-      <div>
-        <BarGraphAll initialData={initialData2} width={"1635px"} widthGraph={1500} title={"Lead Category Distribution"}/>
+        <div className="w-auto mr-8">
+          <BarGraphAll initialData={initialData2} title={"Lead Category Distribution"}/>
+        </div>
       </div>
     </div>
   )
