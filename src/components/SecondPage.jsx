@@ -1,8 +1,7 @@
 
-
-import SideBar from './SideBar'
 import NavBar from './NavBar'
 import DataRender from './DataRender'
+import SidebarWithSelection from './SideBar'
 
 const SecondPage = () => {
   return (
@@ -10,7 +9,7 @@ const SecondPage = () => {
       <NavBar showSeach={false} />
       <div className="overflow-x-hidden overflow-y-scroll scrollbar-hide absolute w-full dark:bg-gray-600 flex pr-6 gap-4">
         <div className='ml-10'>
-          <SideBar />
+          <SidebarWithSelection />
         </div>
         <div className='w-full overflow-y-scroll scrollbar-hide'>
           <DataRender />

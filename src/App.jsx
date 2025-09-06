@@ -4,10 +4,12 @@ import SecondPage from "./components/SecondPage";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<FirstPage />} />
-      <Route path="/select" element={<SecondPage />} />
-    </Routes>
+    <div >
+      <Routes>
+        <Route path="/" element={<FirstPage />} />
+        <Route path="/select/:type" element={<SecondPage />} />
+      </Routes>
+    </div>
   );
 }
 

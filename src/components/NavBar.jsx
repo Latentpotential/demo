@@ -1,9 +1,12 @@
+
 import Logo from '../assets/okayaimg.png';
 import Avatar from './Avatar';
 import DarkModeToggler from './DarkModeToggler';
 import SearchBar from './SearchBar';
 
 const NavBar = ({showSearch = false}) => {
+
+
   return (
     <nav className="fixed top-0 left-0 w-full pb-5 bg-white dark:bg-black/20 backdrop-blur-3xl  z-50">
       <div className='flex justify-between items-center '>

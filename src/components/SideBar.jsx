@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   BrickWallShield,
@@ -25,7 +25,51 @@ import {
   Phone,
   ScrollText,
 } from "lucide-react";
-import ButtonList from "./SubButton";
+
+const ButtonList = ({ selectedItem, setSelectedItem }) => {
+  const navigate = useNavigate();
+
+  const items = [
+    { label: "OEM", path: "/select/oem" },
+    { label: "System Integrator", path: "/select/integrator" },
+    { label: "End User", path: "/select/end-user" },
+    { label: "Gov. Tender", path: "/select/gov" },
+    { label: "Dealer", path: "/select/dealer" },
+    { label: "Channel Partner", path: "/select/partner" },
+    { label: "Sub Dealer", path: "/select/sub-dealer" },
+  ];
+
+  const handleClick = (e, item) => {
+    e.stopPropagation();
+    setSelectedItem(item.label);
+    navigate(item.path);
+  };
+
+  return (
+    <div className="bg-gray-600 rounded-lg border border-gray-500 p-4">
+      <div className="flex flex-col gap-3">
+        {items.map((item) => {
+          const isSelected = selectedItem === item.label;
+          return (
+            <button
+              key={item.label}
+              type="button"
+              onClick={(e) => handleClick(e, item)}
+              className={`w-full text-left px-6 py-2 rounded-xl border transition-all
+                ${
+                  isSelected
+                    ? "bg-green-500 text-white border-green-500 shadow-md"
+                    : "bg-black/50 dark:bg-black/50 text-white border-gray-500 hover:bg-green-500 dark:hover:bg-black/20"
+                }`}
+            >
+              <p className="font-semibold">{item.label}</p>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 const SidebarItem = ({
   title,
@@ -39,35 +83,39 @@ const SidebarItem = ({
 }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const isActive = activeIndex === index;
 
   const handleClick = () => {
     setActiveIndex(index);
     if (path) {
       navigate(path);
     } else if (collapsible) {
-      setOpen(!open);
+      setOpen((s) => !s);
     }
   };
-
-  const isActive = activeIndex === index;
 
   return (
     <div className="mb-1">
       <button
         onClick={handleClick}
         className={`w-[270px] h-[45px] flex justify-between items-center p-4 text-left border rounded-lg transition
-          ${isActive ? "bg-black text-white" : "bg-white text-black dark:bg-black/30 dark:text-white dark:border-gray-500"}
+          ${
+            isActive
+              ? "bg-black text-white"
+              : "bg-white text-black dark:bg-black/30 dark:text-white dark:border-gray-500"
+          }
         `}
       >
         <div className="flex items-center w-full">
           <div className="mr-6">{icon}</div>
           <div>{title}</div>
         </div>
-        {collapsible && (open ? <ChevronUp size={30} /> : <ChevronDown size={30} />)}
+        {collapsible &&
+          (open ? <ChevronUp size={20} /> : <ChevronDown size={20} />)}
       </button>
 
       {collapsible && open && (
-        <div className="rounded-lg w-full text-white bg-gray-500 dark:bg-white dark:text-black">
+        <div className="rounded-lg w-full text-white bg-gray-500 dark:bg-inherit dark:text-black p-3">
           {content}
         </div>
       )}
@@ -75,44 +123,73 @@ const SidebarItem = ({
   );
 };
 
-
-const SideBar = () => {
+export default function SidebarWithSelection() {
   const [activeIndex, setActiveIndex] = useState(null);
-  const [selected, setSelected] = useState("");
-  const location = useLocation();
-  
+  const [selectedItem, setSelectedItem] = useState(null); // 🔥 Moved state here
+
   const SidebarItems = [
-  { title: "Dashboard", icon: <Grid2X2 size={30} />, path: "/" },
-  { title: "Lead", content: <ButtonList onSelect={setSelected} />, icon: <Funnel size={30} />, collapsible: true },
-  { title: "Lead Old", content: <ButtonList onSelect={setSelected} />, icon: <ConciergeBell size={30} />, collapsible: true },
-  { title: "Customer Network", content: <ButtonList onSelect={setSelected} />, icon: <Network size={30} />, collapsible: true },
-  { title: "Follow Ups", icon: <Phone size={30} /> },
-  { title: "Test Ride Activity", icon: <BusFront size={30} /> },
-  { title: "Requirement", icon: <LayoutList size={30} /> },
-  { title: "Quotation", icon: <ScrollText size={30} /> },
-  { title: "Orders", icon: <ShoppingCart size={30} /> },
-  { title: "Performance Invoice", icon: <BrickWallShield size={30} /> },
-  { title: "Attendance", icon: <UserCheck size={30} /> },
-  { title: "Sales Activity", icon: <LocateFixed size={30} /> },
-  { title: "Travel Plan", icon: <Car size={30} /> },
-  { title: "Expense", icon: <HandCoins size={30} /> },
-  { title: "Leave & Application", icon: <CalendarX size={30} /> },
-  { title: "Lead Campaigns", icon: <Megaphone size={30} /> },
-  { title: "My Dealer", icon: <Shapes size={30} /> },
-  { title: "Master", content: <ButtonList onSelect={setSelected} />, icon: <UserStar size={30} />, collapsible: true },
-  { title: "LMS Report", content: <ButtonList onSelect={setSelected} />, icon: <ChartCandlestick size={30} />, collapsible: true },
-  { title: "BPR Report", content: <ButtonList onSelect={setSelected} />, icon: <FileDiff size={30} />, collapsible: true },
-  { title: "Export Report", content: <ButtonList onSelect={setSelected} />, icon: <FileDown size={30} />, collapsible: true },
-];
+    { title: "Dashboard", icon: <Grid2X2 size={24} />, path: "/" },
+    {
+      title: "Lead",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <Funnel size={24} />,
+      collapsible: true,
+    },
+    {
+      title: "Lead Old",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <ConciergeBell size={24} />,
+      collapsible: true,
+    },
+    {
+      title: "Customer Network",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <Network size={24} />,
+      collapsible: true,
+    },
+    { title: "Follow Ups", icon: <Phone size={24} /> },
+    { title: "Test Ride Activity", icon: <BusFront size={24} /> },
+    { title: "Requirement", icon: <LayoutList size={24} /> },
+    { title: "Quotation", icon: <ScrollText size={24} /> },
+    { title: "Orders", icon: <ShoppingCart size={24} /> },
+    { title: "Performance Invoice", icon: <BrickWallShield size={24} /> },
+    { title: "Attendance", icon: <UserCheck size={24} /> },
+    { title: "Sales Activity", icon: <LocateFixed size={24} /> },
+    { title: "Travel Plan", icon: <Car size={24} /> },
+    { title: "Expense", icon: <HandCoins size={24} /> },
+    { title: "Leave & Application", icon: <CalendarX size={24} /> },
+    { title: "Lead Campaigns", icon: <Megaphone size={24} /> },
+    { title: "My Dealer", icon: <Shapes size={24} /> },
+    {
+      title: "Master",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <UserStar size={24} />,
+      collapsible: true,
+    },
+    {
+      title: "LMS Report",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <ChartCandlestick size={24} />,
+      collapsible: true,
+    },
+    {
+      title: "BPR Report",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <FileDiff size={24} />,
+      collapsible: true,
+    },
+    {
+      title: "Export Report",
+      content: <ButtonList selectedItem={selectedItem} setSelectedItem={setSelectedItem} />,
+      icon: <FileDown size={24} />,
+      collapsible: true,
+    },
+  ];
 
   return (
-    <div className="fixed top-24 w-[270px]  h-auto overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
-      {location.pathname === "/select" && (
-        <div className="text-lg mb-4 px-2 py-3 w-[180px] text-wrap flex justify-around items-center rounded-lg bg-green-200 dark:bg-inherit border border-white dark:border-gray-500 text-white dark:text-green-500">
-          {selected || "None"}
-        </div>
-      )}
-      <div className="fixed  w-[270px] h-[100%] overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto">
+    <div className="fixed top-24 w-[270px] h-auto overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto mt-10">
+
+      <div className="fixed w-[270px] h-[100%] overflow-y-auto bg-white dark:bg-inherit scrollbar-hide max-w-md mx-auto">
         {SidebarItems.map((item, index) => (
           <SidebarItem
             key={index}
@@ -129,6 +206,4 @@ const SideBar = () => {
       </div>
     </div>
   );
-};
-
-export default SideBar;
+}

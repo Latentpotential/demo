@@ -1,10 +1,12 @@
 import { useState } from "react";
 import SearchBar2 from "./SearchBar2";
+import { useParams } from "react-router-dom";
 
 const MainCard2 = ({ tabs, data }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [dateFilter, setDateFilter] = useState("");
+  const { type } = useParams();
 
   const [tableData, setTableData] = useState(data);
 
@@ -30,9 +32,19 @@ const MainCard2 = ({ tabs, data }) => {
     return matchesText && matchesDate;
   });
 
+  function capitalizeFirst(str) {
+    return str ? str.toUpperCase() : "";
+  }
+
+  const formattedName = capitalizeFirst(type);
+
+
 
   return (
     <div className="w-[80vw] h-screen relative left-72 top-40  border pr-2 rounded-lg border-stone-300 dark:border-neutral-700">
+      <div className="w-40 h-16 mt-5 rounded-lg ml-5 flex justify-center items-center text-nowrap bg-green-200 text-white py-2 px-3 border border-white dark:border-gray-500">
+        {formattedName}
+      </div>
       <div className=" flex justify-between items-center pr-2  ">
         <div className="flex justify-center text-xl mt-5 ml-5 items-center ">
           {tabs.map((tab) => (
