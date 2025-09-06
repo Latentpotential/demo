@@ -13,7 +13,7 @@ export default function DataTable() {
   ];
 
   return (
-    <div className="w-[124%] h-auto bg-white dark:bg-black/20 dark:border-gray-500 rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200  transition-colors">
+    <div className="w-[118%] h-auto bg-white dark:bg-black/20 dark:border-gray-500 rounded-lg mt-4 ml-4 p-4 space-y-3 border border-gray-200  transition-colors">
       <h2 className="text-xl font-semibold mb-4 mt-4 text-gray-900 dark:text-white">
         Lead Conversion - Source Wise
       </h2>

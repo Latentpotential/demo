@@ -31,7 +31,7 @@ const MiniCard3Comp = ({title, num, quotation, imag}) => {
         </div>
         <div className='space-y-1'>
           <p className="text-4xl font-bold">{num}</p>
-          <p className="text-gray-400 dark:text-white">{quotation}</p>
+          <p className="text-gray-400 dark:text-white line-clamp-2">{quotation}</p>
         </div>
       </div>
       <div className='text-green-200 dark:text-white flex justify-end items-end mt-5'>
@@ -43,7 +43,7 @@ const MiniCard3Comp = ({title, num, quotation, imag}) => {
 
 const MiniCard3 = () => {
   return (
-    <div className='w-[180%] mr-4'>
+    <div className='w-[194%] mr-4'>
       <div className='flex space-x-3'>
         {dataitema.map((item, index) => (
           <MiniCard3Comp 
